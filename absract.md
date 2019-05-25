@@ -1,0 +1,5 @@
+# Pulling out the big GANs: from representation learning to faking things
+
+The modern practice of deep learning has enabled solutions to problems once thought very hard to be automated, and its emergence in multiple computer science fields (computer vision, natural language processing, and more) is influencing a wide spectrum of projects and applications. In a recent breakthrough, the generative adversarial network (GAN) made way for use cases beyond surprisingly appealing generative models, as could become the culprit for many of the upcoming attempts to fake information. Yet, much of its success can be traced back to the study of _representation learning_ as a super-set of deep learning.
+
+This presentation will cover a brief theoretical overview of representation learning, followed by an explanation of what GANs are and what they have achieved so far. Before it conclusion, a use case for unsupervised learning methods is presented in the context of information extraction from medical images.

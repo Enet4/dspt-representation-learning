@@ -1,0 +1,102 @@
+/* Extra custom stuff
+*/
+
+.reveal {
+  font-size: 32px;
+}
+
+.reveal h1 {
+  font-size: 2.8em;
+}
+
+.reveal h2 {
+  font-size: 1.8em;
+}
+
+.reveal h3 {
+  font-size: 1.4em;
+}
+
+.reveal h4 {
+  font-size: 1em;
+}
+
+.reveal section img {
+  border: 0cm;
+  box-shadow: none;
+  background: none;
+}
+
+.reveal .foot {
+  background-color: white;
+  padding: 14pt;
+}
+
+.reveal .foot img {
+  vertical-align: middle;
+  box-shadow: none;
+  max-height: 1.5em;
+  max-width: 4em;
+  margin-left: 10pt;
+  margin-right: 10pt;
+}
+
+.reveal .column ul li {
+  font-size: 24px;
+}
+
+.reveal ul {
+  list-style-type: none;
+}
+.reveal ul ul {
+  list-style-type: none;
+}
+.reveal ul li::before {
+  content: "\25CF \0020";
+}
+.reveal ul ul li::before {
+  content: "\25AA \0020";
+}
+.reveal ul .arrow-bullet::before {
+  content: "\25BA \0020";
+}
+
+.reveal ul .plus-bullet::before {
+  font-weight: 600;
+  content: "+ \0020";
+}
+
+.reveal ul .minus-bullet::before {
+  font-weight: 600;
+  content: "- \0020";
+}
+
+.container {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+
+  box-sizing: border-box;
+}
+
+.column-one {
+  order: 1;
+}
+.column-two {
+  order: 2;
+}
+.column-three {
+  order: 3;
+}
+.column-four {
+  order: 4;
+}
+.column-five {
+  order: 5;
+}
+
+table {
+  font-size: 19pt;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      Pulling out the big GANs: from representation learning to faking things
+    </title>
+    <meta name="author" content="Eduardo Pinho" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <!--		<meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/serif.css" id="theme" />
+    <link rel="stylesheet" href="css/extra.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          data-markdown="main.md"
+          data-separator="^\n\-\-+\-\n"
+          data-separator-vertical="^\n\.+\n"
+          data-separator-notes="^Notes?:"
+          data-charset="utf8"
+        ></section>
+      </div>
+    </div>
+    <script src="js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        hash: true,
+        slideNumber: true,
+        transition: "slide",
+        math: {
+          mathjax:
+            "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js",
+          config: "TeX-AMS_HTML-full", // See http://docs.mathjax.org/en/latest/config-files.html
+          // pass other options into `MathJax.Hub.Config()`
+          TeX: { Macros: [] }
+        },
+        dependencies: [
+          {
+            src: "js/marked.js",
+            condition: function() {
+              return !!document.querySelector("[data-markdown]");
+            }
+          },
+          {
+            src: "js/markdown.js",
+            condition: function() {
+              return !!document.querySelector("[data-markdown]");
+            }
+          },
+          {
+            src: "js/math.js",
+            async: true
+          }
+        ]
+      });
+    </script>
+  </body>
+</html>
