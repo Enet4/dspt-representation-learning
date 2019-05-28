@@ -6,11 +6,11 @@
 }
 
 .reveal h1 {
-  font-size: 2.8em;
+  font-size: 2.6em;
 }
 
 .reveal h2 {
-  font-size: 1.8em;
+  font-size: 2em;
 }
 
 .reveal h3 {
@@ -99,4 +99,8 @@
 
 table {
   font-size: 19pt;
+}
+
+.reveal .cite {
+  font-size: 11pt;
 }

@@ -1,10 +1,12 @@
-## Pulling out the big GANs: from representation learning to faking things
+# Pulling out the big GANs
+
+## From representation learning to faking things
 
 <div style="font-size: 24pt; text-align: left; margin-top: 96px; margin-bottom: 24px;">Eduardo Pinho</div>
 <br>
 <!-- <div style="font-size: 20pt; text-align: left;">DSPT</div> -->
 
-<div style="font-size: 12pt; text-align: right; margin: 64px;">5th June 2019</div>
+<div style="font-size: 12pt; text-align: right; margin: 1cm;">5th June 2019</div>
 <div class="foot" style="margin-left: 0pt; margin-right: 0pt; margin-bottom: 0pt; background-color: white;">
     <img class="foot" src="img/ua.png"/>
     <img class="foot" src="img/ieeta.png"/>
@@ -18,17 +20,23 @@
 
 <br/>
 
-1. Introduction
-2. Representation Learning
-3. Generative Adversarial Networks
-4. Use case: concept detection from medical images
-5. Conclusion
+1. Representation Learning
+2. Generative Adversarial Networks
+3. Use case: concept detection from medical images
 
 ---
 
-## Introduction
+### Deep learning
 
+- Achieving significant milestones over the last decade.
 
+![](img/xkcd-tasks.png)
+
+.
+
+<img style="height: 15cm" src="img/ai-venn.png" />
+
+<span class="cite">Goodfellow et al. <em>"Deep Learning Book"</em>. 2016. <a href="https://www.deeplearningbook.org">www.deeplearningbook.org</a></span>
 
 ---
 
@@ -36,29 +44,45 @@
 
 - Also called **feature learning**.
 - Given a data set $X$, learning a function $f(x) \rightarrow z$, mapping samples to a new domain $Z$ that makes other problems easier to solve.
-- _Feature extraction_ can rely on handcrafted algorithms.
+- _Feature extraction_? <!-- .element: class="fragment" data-fragment-index="0" -->
+- Often depicted with probabilistic methods. <!-- .element: class="fragment" data-fragment-index="1" -->
+   - $x \sim X$, $p(z | x)$
+   - Classification: $p(y| x)$
 
-<div class="arrow-bullet fragment" data-fragment-index="1">
+.
+
 General priors of representation learning (Bengio et al. 2013):
 
 <ul>
 <li>Smoothness</li>
+  <ul>
+  <li> $a \approx b => f(a) \approx f(b)$ 
+  </ul>
 <li>Hierarchical organization</li>
 <li>Sparsity</li>
 <li>Temporal and spatial coherence</li>
 <li>Simplicity of factor dependencies</li>
-<li>...</li>
+<li>Manifold</li>
 </ul>
 </div>
 
+<span class="cite">Bengio et al. <em>"Representation Learning"</em>. 2013. <a href="https://www.deeplearningbook.org">www.deeplearningbook.org</a></span>
+
 .
 
-### Deep learning
+## What is a manifold?
 
-- Achieving significant milestones over the last decade.
-- Actually a subset of **representation learning**.
-- Medical imaging data sets, very few to no annotations.
-   - Expertise is usually required
+![](img/spiked-math-poker.png) <!-- .element: class="fragment" data-fragment-index="0" -->
+
+Notes: So what is a manifold? Well, it's the reason why mathematicians can't play poker. They usually end up with a bad hand and go "man I fold". except not.
+
+.
+
+<!-- TODO  -->
+
+Notes: Think of it as a subspace of the original data domain.
+
+### Deep learning
 
 .
 
@@ -66,7 +90,12 @@ General priors of representation learning (Bengio et al. 2013):
 
 ## Use case: concept detection from medical images
 
----
+.
+
+- Medical imaging data sets, very few to no annotations.
+   - Expertise is usually required
+
+.
 
 ImageCLEF Caption 2017 + 2018 + 2019
 
