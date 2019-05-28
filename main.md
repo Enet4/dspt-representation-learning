@@ -280,6 +280,8 @@ Official participation
 - Many other feature learning methods. <!-- .element: class="fragment" data-fragment-index="0" -->
 - Explore non-visual information in representation learning. <!-- .element: class="fragment" data-fragment-index="0" -->
 
+Open-source: [github.com/bioinformatics-ua/imageclef-toolkit](https://github.com/bioinformatics-ua/imageclef-toolkit)
+
 ---
 
 # Conclusion
