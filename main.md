@@ -46,8 +46,8 @@
 - Given a data set $X$, learning a function $f(x) \rightarrow z$, mapping samples to a new domain $Z$ that makes other problems easier to solve.
 - _Feature extraction_? <!-- .element: class="fragment" data-fragment-index="0" -->
 - Often depicted with probabilistic methods. <!-- .element: class="fragment" data-fragment-index="1" -->
-   - $x \sim X$, $p(z | x)$
-   - Classification: $p(y| x)$
+   - $x \sim p(x)$, $p(z | x)$
+   - Classification: $p(y | x)$
 
 .
 
@@ -85,6 +85,41 @@ Notes: Think of it as a subspace of the original data domain.
 ### Deep learning
 
 .
+
+---
+
+# Generative Adversarial Networks
+
+
+## BigGAN
+
+Large GAN for natural images.
+
+- Original source of dog tennis ball
+
+.
+
+## Progressive GAN
+
+- Progressively grow the generator and discriminator.
+   - 4x4, 8x8, ..., **1024x1024**
+
+<!-- TODO insert GIF -->
+
+.
+
+## StyleGAN
+
+- NVIDIA's next step
+- Unsupervised learning of style (coarse + fine)
+
+<!-- TODO insert image or something of the like -->
+
+.
+
+### [www.ThisPersonDoesNotExist.com](https://www.thispersondoesnotexist.com)
+
+<iframe width="800" height="600" src="https://www.thispersondoesnotexist.com"></iframe>
 
 ---
 
