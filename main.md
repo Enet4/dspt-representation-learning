@@ -28,30 +28,45 @@
 
 ### Deep learning
 
-- Achieving significant milestones over the last decade.
-
-![](img/xkcd-tasks.png)
+<div class="container">
+<div class="column column-one">
+<ul>
+  <li>Achieving significant milestones over the last decade.</li>
+  <li>Ever ubiquitous and attainable.</li>
+  <ul>
+    <li>Good literature is open-access (ArXiv)</li>
+    <li>Open-source software (TensorFlow, Torch, ...)</li>
+  </ul>
+  <li class="fragment" data-fragment-index="0">Annotated data is often limited.</li>
+  <li class="fragment" data-fragment-index="0">How to explore unlabeled data?</li>
+  <li class="fragment" data-fragment-index="1"><b>Representation Learning</b></li>
+<ul>
+</div>
+<div class="column column-two">
+<img style="width: 6cm" src="img/xkcd-tasks.png " />
+</div>
+</div>
 
 .
 
-<img style="height: 15cm" src="img/ai-venn.png" />
+<img style="height: 14cm" src="img/ai-venn.png" />
 
-<span class="cite">Goodfellow et al. <em>"Deep Learning Book"</em>. 2016. <a href="https://www.deeplearningbook.org">www.deeplearningbook.org</a></span>
+<span class="cite">Goodfellow et al. <em>"Deep Learning"</em>. 2016. <a href="https://www.deeplearningbook.org">www.deeplearningbook.org</a></span>
 
 ---
 
 ## Representation learning
 
-- Also called **feature learning**.
-- Given a data set $X$, learning a function $f(x) \rightarrow z$, mapping samples to a new domain $Z$ that makes other problems easier to solve.
-- _Feature extraction_? <!-- .element: class="fragment" data-fragment-index="0" -->
-- Often depicted with probabilistic methods. <!-- .element: class="fragment" data-fragment-index="1" -->
-   - $x \sim p(x)$, $p(z | x)$
-   - Classification: $p(y | x)$
+ - Also called **feature learning**.
+ - Given a data set $X$, learning a function $f(x) \rightarrow z$, mapping samples to a new domain $Z$ that makes other problems easier to solve.
+ - <!-- .element: class="fragment" data-fragment-index="0" --> <em>Feature extraction</em>?
+ - Often described with probabilistic methods. <!-- .element: class="fragment" data-fragment-index="1" -->
+    - $p(x)$, $p(z | x)$
+    - Classification: $p(y | x)$
 
 .
 
-General priors of representation learning (Bengio et al. 2013):
+General priors of representation learning:
 
 <ul>
 <li>Smoothness</li>
@@ -60,13 +75,17 @@ General priors of representation learning (Bengio et al. 2013):
   </ul>
 <li>Hierarchical organization</li>
 <li>Sparsity</li>
+<li>Semi-supervised learning</i>
 <li>Temporal and spatial coherence</li>
+<li>Multiple explanatory factors</li>
+<li>Shared factors across tasks</li>
 <li>Simplicity of factor dependencies</li>
-<li>Manifold</li>
+<li>...</li>
+<li>Manifolds</li>
 </ul>
 </div>
 
-<span class="cite">Bengio et al. <em>"Representation Learning"</em>. 2013. <a href="https://www.deeplearningbook.org">www.deeplearningbook.org</a></span>
+<span class="cite">Bengio et al. <em>"Representation Learning: A review and new perspectives"</em>. 2013.</span>
 
 .
 
@@ -78,9 +97,46 @@ Notes: So what is a manifold? Well, it's the reason why mathematicians can't pla
 
 .
 
-<!-- TODO  -->
+The **manifold hypothesis**:
 
-Notes: Think of it as a subspace of the original data domain.
+> [...] real-world data presented in high-dimensional spaces are expected to concentrate in the vicinity of a manifold $\mathcal{M}$ of much lower dimensionality $d_{\mathcal{M}}$, embedded in high-dimensional input space $\mathbb{R}^{d_x}$.
+
+<span class="fragment" data-fragment-index="0">ImageNet: over 64,000s pixels / image, but no $(256 \times 3)^{64,000}$ possible images</span>
+
+<span class="fragment" data-fragment-index="1">Manifold learning $X \rightarrow \mathcal{M}$</span>
+
+Notes: Think of it as a subspace of the original data domain, to which our data tends to concentrate to. 
+
+.
+
+Principal Component Analysis
+
+- models a linear manifold
+
+.
+
+## Autoencoder
+
+<img src="img/autoencoder.svg" />
+
+- Encoder-decoder 
+- Minimize reconstruction loss
+- Constrained $z$
+
+.
+
+### Variational Autoencoder
+
+<div style="height: 10cm">
+<img src="img/vae.svg" />
+</div>
+
+<ul style="font-size: 20pt">
+<li>Autoencoder with Kulback-Leibler divergence for variational inference</li>
+<ul><li>Kingma et al. 2014</li></ul>
+</ul>
+
+<span class="cite">Kingma et al. <em>"Auto-Encoding Variational Bayes"</em>. 2014</span>
 
 ### Deep learning
 
@@ -90,12 +146,18 @@ Notes: Think of it as a subspace of the original data domain.
 
 # Generative Adversarial Networks
 
+.
+
+<!-- -->
+
+.
+
 
 ## BigGAN
 
 Large GAN for natural images.
 
-- Original source of dog tennis ball
+- Original source of dogball
 
 .
 
@@ -115,11 +177,13 @@ Large GAN for natural images.
 
 <!-- TODO insert image or something of the like -->
 
+<span class="cite">Karras et al. "A Style-Based Generator Architecture for Generative Adversarial Networks". 2018 </span>
+
 .
 
 ### [www.ThisPersonDoesNotExist.com](https://www.thispersondoesnotexist.com)
 
-<iframe width="800" height="600" src="https://www.thispersondoesnotexist.com"></iframe>
+<iframe width="960" height="600" src="https://www.thispersondoesnotexist.com"></iframe>
 
 ---
 
@@ -186,14 +250,14 @@ ImageCLEF Caption 2017 + 2018 + 2019
 
 .
 
-#### Sparse Denoising Auto-Encoder
+#### Sparse Denoising autoencoder
 
 <div style="height: 10cm">
 <img src="img/sdae.svg" />
 </div>
 
 <ul style="font-size: 20pt">
-<li>Auto-encoder with sparsity-inducing regularization</li>
+<li>autoencoder with sparsity-inducing regularization</li>
 <ul>
 <li>Vincent et al. 2010</li>
 </ul>
@@ -203,19 +267,6 @@ ImageCLEF Caption 2017 + 2018 + 2019
 
 .
 
-#### Variational Auto-Encoder
-
-<div style="height: 10cm">
-<img src="img/vae.svg" />
-</div>
-
-<ul style="font-size: 20pt">
-<li>Auto-encoder with Kulback-Leibler divergence for variational inference</li>
-<ul><li>Kingma et al. 2014</li></ul>
-<li>Features extracted from the bottleneck vector</li>
-</ul>
-
-.
 
 #### Bidirectional Generative Adversarial Network
 
@@ -234,12 +285,12 @@ $$V(G, E, D) = \min_{G, E} \max_{D} \mathbb{E}_{\mathrm{x} \sim p_{\mathrm{x}}} 
 
 .
 
-#### Adversarial Auto-Encoder
+#### Adversarial autoencoder
 
 <div><img src="img/2018aae.svg" /></div>
 
 <ul style="font-size: 20pt">
-<li>Auto-encoder with adversarial loss for regularization</li>
+<li>autoencoder with adversarial loss for regularization</li>
 <ul><li>Makhzani et al. 2015</li></ul>
 <li>$D$ forces $E$ to approximate a prior distribution $\mathcal{N}(0, I)$</li>
 <li>Features extracted from the bottleneck vector</li>
@@ -247,14 +298,13 @@ $$V(G, E, D) = \min_{G, E} \max_{D} \mathbb{E}_{\mathrm{x} \sim p_{\mathrm{x}}} 
 
 .
 
-#### Flipped-Adversarial Auto-Encoder
+#### Flipped-Adversarial autoencoder
 
 <div><img src="img/faae_2lvl.svg" /></div>
 
 <ul style="font-size: 20pt">
 <li>A GAN with a latent regressor $E$</li>
 <ul><li>Zhang et al. 2018</li></ul>
-<!-- TODO description <li> TODO description </li> -->
 <li>2-level for stability</li>
 <li>Baseline, poor performance is expected</li>
 <li>Features extracted with $E(x)$</li>
