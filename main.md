@@ -251,10 +251,10 @@ Large GAN for natural images.
 
 ## Progressive GAN
 
+<img src="img/prog_gan_actor.png" />
+
 - Progressively grow the generator and discriminator.
    - 4x4, 8x8, ..., **1024x1024**
-
-<!-- TODO proggan actor -->
 
 <!-- TODO insert GIF -->
 
@@ -283,7 +283,7 @@ Large GAN for natural images.
 
 Easy to shoot your foot with:
 
-- Hard to train - balancing discriminator and generator
+- Hard to train ─ balancing discriminator and generator
 - Mode collapse
 
 .
