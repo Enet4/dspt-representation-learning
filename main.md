@@ -153,7 +153,7 @@ $$X \rightarrow \mathcal{M}$$
 
 .
 
-### Variational Autoencoder
+### Variational Autoencoder (VAE)
 
 <div style="height: 10cm">
 <img src="img/vae.svg" />
@@ -168,7 +168,7 @@ $$X \rightarrow \mathcal{M}$$
 
 .
 
-#### VAE Sampling (VAE)
+#### VAE Sampling
 
 <img src="img/vae_noise_sampling.png" />
 
@@ -249,6 +249,7 @@ GANs can do latent space arithmetic
 <img src="img/pix2pixHD.gif" />
 
 <span class="cite">Wang et al. <em>"High-Resolution Image Synthesis and Semantic Manipulation with Conditional GANs"</em>. 2018</span>
+
 .
 
 ### Domain Transfer: Star GAN
@@ -261,13 +262,15 @@ GANs can do latent space arithmetic
 
 .
 
+<!-- Sorry, presentation too long.
+
 #### Super-resolution
 
 <img src="img/srgan.png" />
 
 <span class="cite">Ledig et al. <em>"Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network"</em>. 2017</span>
 
-.
+-->
 
 
 ## Big GAN
@@ -282,8 +285,10 @@ Large GAN for natural images.
 
 .
 
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/BigGAN?src=hash&amp;ref_src=twsrc%5Etfw">#BigGAN</a> is so much fun. I stumbled upon a (circular) direction in latent space that makes party parrots, as well as other party animals: <a href="https://t.co/zU1mCh9UBe">pic.twitter.com/zU1mCh9UBe</a></p>&mdash; Phillip Isola (@phillip_isola) <a href="https://twitter.com/phillip_isola/status/1066567846711476224?ref_src=twsrc%5Etfw">November 25, 2018</a></blockquote>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/BigGAN?src=hash&amp;ref_src=twsrc%5Etfw">#BigGAN</a> is so much fun. I stumbled upon a (circular) direction in latent space that makes party parrots, as well as other party animals</p>&mdash; Phillip Isola (@phillip_isola) <a href="https://twitter.com/phillip_isola/status/1066567846711476224?ref_src=twsrc%5Etfw">November 25, 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<video height="300" loop autoplay="autoplay" src="img/biggan_party.mp4" />
 
 .
 
@@ -315,7 +320,7 @@ Original source of dogball
 
 .
 
-### Progressive GAN: CelebA interpolation
+### Progressive GAN: Interpolation
 
 <iframe src="https://drive.google.com/file/d/1gl6FSeTqqWqqg-JXjWBxA0f-MGaq9BlL/preview" width="640" height="480"></iframe>
 
