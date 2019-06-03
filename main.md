@@ -8,10 +8,10 @@
 
 <div style="font-size: 12pt; text-align: right; margin: 1cm;">4th June 2019</div>
 <div class="foot" style="margin-left: 0pt; margin-right: 0pt; margin-bottom: 0pt; background-color: white;">
-    <img class="foot" src="img/ua.png"/>
-    <img class="foot" src="img/ieeta.png"/>
-    <img class="foot" src="img/logobio.png"/>
-    <img class="foot" src="https://www.datascienceportugal.com/wp-content/uploads/2018/08/LogoDSPT_Grey-300x225.png"/>
+    <img src="https://www.datascienceportugal.com/wp-content/uploads/2018/08/LogoDSPT_Grey-300x225.png"/>
+    <img src="img/ua.png"/>
+    <img src="img/ieeta.png"/>
+    <img src="img/logobio.png"/>
 </div>
 
 ---
@@ -38,14 +38,18 @@
     <li>Good literature is open-access (ArXiv)</li>
     <li>Open-source software (TensorFlow, Torch, ...)</li>
   </ul>
-  <li class="fragment" data-fragment-index="0">Annotated data is often limited.</li>
-  <li class="fragment" data-fragment-index="0">How to explore unlabeled data?</li>
+  <li class="fragment" data-fragment-index="0">End-to-end architectures.</li>
+  <li class="fragment" data-fragment-index="0">Supervised methods are common.</li>
+  <li class="fragment" data-fragment-index="0">Curse of dimensionality.</li>
+  <li class="fragment" data-fragment-index="0">Annotated data is often limited; How to explore unlabeled data?</li>
 <ul>
 </div>
 <div class="column column-two">
 <img style="width: 6cm" src="img/xkcd-tasks.png " />
 </div>
 </div>
+
+Note: It is no surprise that deep learning has become connected to so many milestones in AI. It's evolving quite quickly the past decade, and many resources exist: all the good papers are available for free on ArXiv, and open-source frameworks were developed so that these deep neural networks can be designed and trained on hardware for parallel computation without this kind of expertise.
 
 .
 
@@ -59,13 +63,20 @@
 
 ## Representation Learning
 
- - Also called **feature learning**.
- - Given a data set $X$, learn a function $$f(x) \rightarrow z$$ which maps samples to a new latent domain $Z$ that makes other problems easier to solve.
+ AKA **feature learning**
+ 
+ > Given a data set $X$, learn a function $f(x) \rightarrow z$ which maps samples to a new latent domain that makes other problems easier to solve.
+
  - <!-- .element: class="fragment" data-fragment-index="0" --> <em>Feature extraction</em>?
  - Often posed as either deterministic or probabilistic. <!-- .element: class="fragment" data-fragment-index="1" -->
     - Original samples in distribution: $x$ | &nbsp; $p(x)$.
     - Representation: $z = f(x)$ &nbsp; | &nbsp; $p(z | x)$
+    - Generation: $x = g(z)$ &nbsp; | &nbsp; $p(x | z)$
     - Classification: $y = c(z)$ &nbsp; | &nbsp; $p(y | z)$
+
+<span class="cite">Bengio et al. <em>"Representation Learning: A review and new perspectives"</em>. 2013.</span>
+
+Notes: This is the definition according to one of the godfathers of deep learning, Yoshua Bengio.
 
 .
 
@@ -73,19 +84,22 @@ General priors of representation learning:
 
 <ul>
 <li>Smoothness ($a \approx b \implies f(a) \approx f(b)$)</li>
-<li>Hierarchical organization</li>
+<li>Multiple explanatory factors</li>
+<li>Distributed/Hierarchical organization</li>
+<li>Shared factors across tasks</li>
 <li>Sparsity</li>
 <li>Semi-supervised learning</i>
 <li>Temporal and spatial coherence</li>
-<li>Multiple explanatory factors</li>
-<li>Shared factors across tasks</li>
 <li>Simplicity of factor dependencies</li>
 <li>...</li>
 <li>Manifolds</li>
 </ul>
 </div>
 
+
 <span class="cite">Bengio et al. <em>"Representation Learning: A review and new perspectives"</em>. 2013.</span>
+
+Notes: A good representation learning provides disentangled explanatory factors. Sometimes these factors may not be necessarily clear to us humans, but allows the computer to generalize over the distribution of data.
 
 .
 
@@ -292,7 +306,7 @@ Large GAN for natural images.
 
 .
 
-Original source of dogball
+Original source of _dogball_
 
 <img src="img/dogball.png" />
 
@@ -341,7 +355,7 @@ Original source of dogball
 - NVIDIA's next step
 - Unsupervised learning of style (coarse + fine)
 
-<!-- TODO insert image or something of the like -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kSLJriaOumA?rel=0&amp;start=70" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <span class="cite">Karras et al. "A Style-Based Generator Architecture for Generative Adversarial Networks". 2018</span>
 
@@ -361,7 +375,7 @@ Original source of dogball
 
 .
 
-### Shortcomings
+### Shortcomings of GANs
 
 Easy to shoot your foot with:
 
@@ -397,33 +411,40 @@ Easy to shoot your foot with:
 
 .
 
-- Medical imaging data sets, very few to no annotations.
-   - Expertise is usually required
+<ul>
+<li>Medical imaging data sets, very few to no annotations.</li>
+<ul>
+   <li>Expertise is usually required</li>
+</ul>
+<li>Automated labelling contributes to an enriched image database.</li>
+<ul>
 
-- Automated labelling contributes to an enriched image database.
+
+Note: Whether you're searching in a hospital's medical imaging archive or just scavenging images from the medical scientific literature, you'll often come across large amounts of data without annotations.
 
 .
 
-ImageCLEF Caption 2017 / 2018 / 2019
+### [ImageCLEF](https://www.imageclef.org) Caption 2017 / 2018 / 2019
 
 <img style="height: 6.2cm" src="img/imageclef2017-examples.png" />
 
-- Pubmed Central (PMC): images from biomedical literature.
-- Annotations: lists of CUI identifiers extracted from captions.
-
-<h4>ImageCLEF Caption 2018</h4>
+ImageCLEF Caption 2018 data set:
 <ul>
+<li>Pubmed Central (PMC): images from biomedical literature.</li>
+<li>Annotations: lists of CUI identifiers extracted from captions.</li>
 <li>No subfigures, pre-filtering</li>
 <li>Training: 223,859 images</li>
 <li>Testing: 9,938 images</li>
 <li>Over 100 thousand unique concepts</li>
 <ul>
 
+Notes: This is the background that led to the ImageCLEF Caption challenge.
+
 .
 
 ### Method Outline
 
-<img style="height: 95%" src="img/feature-learning-pipeline-generic.svg" />
+<img style="height: 100%" src="img/feature-learning-pipeline-generic.svg" />
 
 <!--
 .
@@ -455,6 +476,7 @@ ImageCLEF Caption 2017 / 2018 / 2019
 <ul style="font-size: 20pt">
 <li>Autoencoder with adversarial loss for regularization</li>
 <li>$D$ forces $E$ to approximate a prior distribution</li>
+<li>$\epsilon$ sampled from a 1024-D hypersphere</li>
 <li>Features extracted from the bottleneck vector</li>
 </ul>
 
@@ -482,10 +504,27 @@ ImageCLEF Caption 2017 / 2018 / 2019
 
 .
 
-#### F-AAE Interpolation
+#### F-AAE Samples + Interpolation
 
-<img src="img/faae_interpolation.png" />
+<img style="vertical-align: top" src="img/faae2lvl_samples.png" />
 
+<img style="vertical-align: top" src="img/faae_interpolation.png" />
+
+.
+
+### Feature visualization
+
+<img height="500" src="img/train-pca-plots-aae.png" />
+
+.
+
+<img height="500" src="img/train-umap-plots-aae.png" />
+
+<span class="cite">McInnes and Healy. <em>"UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction"</em>. 2018</span>
+
+.
+
+<img height="500" src="img/train-umap-plots-faae.png" />
 
 .
 
