@@ -6,7 +6,7 @@
 <br>
 <!-- <div style="font-size: 20pt; text-align: left;">DSPT</div> -->
 
-<div style="font-size: 12pt; text-align: right; margin: 1cm;">5th June 2019</div>
+<div style="font-size: 12pt; text-align: right; margin: 1cm;">4th June 2019</div>
 <div class="foot" style="margin-left: 0pt; margin-right: 0pt; margin-bottom: 0pt; background-color: white;">
     <img class="foot" src="img/ua.png"/>
     <img class="foot" src="img/ieeta.png"/>
@@ -60,12 +60,12 @@
 ## Representation Learning
 
  - Also called **feature learning**.
- - Given a data set $X$, learning a function $f(x) \rightarrow z$, mapping samples to a new domain $Z$ that makes other problems easier to solve.
+ - Given a data set $X$, learn a function $$f(x) \rightarrow z$$ which maps samples to a new latent domain $Z$ that makes other problems easier to solve.
  - <!-- .element: class="fragment" data-fragment-index="0" --> <em>Feature extraction</em>?
  - Often posed as either deterministic or probabilistic. <!-- .element: class="fragment" data-fragment-index="1" -->
-    - Original samples in distribution: $x$ ; $p(x)$.
-    - Representation: $z = f(x)$ ; $p(z | x)$
-    - Classification: $y = c(z)$ ; $p(y | z)$
+    - Original samples in distribution: $x$ | &nbsp; $p(x)$.
+    - Representation: $z = f(x)$ &nbsp; | &nbsp; $p(z | x)$
+    - Classification: $y = c(z)$ &nbsp; | &nbsp; $p(y | z)$
 
 .
 
@@ -106,20 +106,35 @@ The **manifold hypothesis**:
 
 <span class="fragment" data-fragment-index="0">ImageNet: over 64,000s pixels / image, but not $256^{3 \times 64,000}$ possible images</span>
 
-<span class="fragment" data-fragment-index="1">Manifold learning $X \rightarrow \mathcal{M}$</span>
-
 Notes: Think of it as a subspace of the original data domain, to which our data tends to concentrate to. Considering the domain of natural images for a moment: if they are resized to 256x256, we have over 64 thousand RGB pixels / image, which makes an absurdly huge dimensionality. However, we know that we won't find every possible RGB image combination in ImageNet. It will be incredibly more specific. Hence, these images will sit in this manifold, and they can be mapped into a domain of lower dimensionality that can yet retain all the information from the previous domain of the data.
 
 .
 
-### Early Representation Learning
+<h3>Manifold learning</h3>
+$$X \rightarrow \mathcal{M}$$
+<div>
+<ul>
+<li>Dimensionality reduction</li>
+<li>Concentration points: categories</li>
+<li>Linear separability</li>
+<li>Noise detection</li>
+</ul>
+</div>
 
-Principal Component Analysis
+<img height="300" src="img/rl_denoising.png" />
+
+.
+
+### Early Representation Learning: <br> Principal Component Analysis
 
 - models a linear manifold
 - $z = f(x) = \mathrm{W}^Tx + b$
-- $\mathrm{W}$: orthogonal basis of greater variance
-- Decorrelated features in $z$
+- Decorrelated features in $z$ (principal components)
+
+<div>
+<img width="360" src="img/pca-plot-x.svg" />
+<img width="360" src="img/pca-plot-z.svg" />
+</div>
 
 .
 
@@ -128,7 +143,8 @@ Principal Component Analysis
 <img width="300px" src="img/autoencoder.svg" />
 
 - Encoder-decoder with a bottleneck (AKA latent code)
-- Minimize reconstruction loss: $D(E(x)) \sim x$
+- Minimize reconstruction loss: $D(E(x)) \approx x$
+   - Often mean squared error: $|x - D(E(x))|^2_2$
 - Constrained $z$
 <li class="fragment" data-fragment-index="0"> Can be <em>overcomplete</em>!</li>
   <ul class="fragment" data-fragment-index="0">
@@ -152,7 +168,7 @@ Principal Component Analysis
 
 .
 
-#### VAE Sampling
+#### VAE Sampling (VAE)
 
 <img src="img/vae_noise_sampling.png" />
 
@@ -164,8 +180,8 @@ Principal Component Analysis
    - plus other clustering algorithms
 - Sparse Coding
 - Boltzmann Machines
-   - and Restricted Boltzmann Machines (RBMs)
-
+   - Restricted Boltzmann Machines (RBMs)
+   - Deep Belief Networks (DBNs)
 
 ---
 
@@ -173,31 +189,34 @@ Principal Component Analysis
 
 .
 
-A min-max game between a **Generator** and a **Discriminator**
+### GAN
 
-<!-- Definition here -->
+<img height="200" src="img/gan.svg" />
+
+A min-max game between a **Generator** and a **Discriminator**.
 
 - $G$: given a prior $z$, create samples $q(x|z)$ close to $p(x)$
 - $D$: distinguish real samples $p(x)$ from generated samples $q(x)$
 
-$$\min_{G} \max_{D} V(D, G) = \mathbb{E}_{x \sim p(x)} \big(\log (D(x))\big)$$
+$$\min_{G} \max_{D} V(D, G) = \mathbb{E}_{x \sim p(x)} \big(\log (D(x))\big)$$ <!-- .element: class="fragment" data-fragment-index="0" -->
 
-$$ + \mathbb{E}_{z \sim p(z)} \big(\log (1 - D(G(z))\big)$$
-
-In practice, a non-saturating adaptation is used.
+$$ + \mathbb{E}_{z \sim p(z)} \big(\log (1 - D(G(z))\big)$$ <!-- .element: class="fragment" data-fragment-index="0" -->
 
 .
 
-<img src="img/gan_samples.png" />
+<img height="500" src="img/gan_samples.png" />
+
+GANs do not memorize data
 
 .
+
+GANs can get weird...
 
 <img src="img/gan_lolcat.jpg" />
 
-
 .
 
-### Latent Space Arithmetic
+GANs can do latent space arithmetic
 
 <img src="img/gan_vector_arithmetic.png" />
 
@@ -207,11 +226,38 @@ In practice, a non-saturating adaptation is used.
 
 ### Domain Transfer: Cycle GAN
 
-<!-- TODO -->
+2 generators + 2 discriminators + cycle-consistency
+
+<img height="440" src="img/cyclegan_examples.jpg" />
+
+<span class="cite">Zhu et al. <em>"Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks"</em>. 2017</span>
 
 .
 
-<img src="horse2zebra.gif" />
+<img src="img/horse2zebra.gif" />
+
+.
+
+### Domain Transfer: Pix2Pix
+
+<img src="img/pix2pix_teaser.jpg" />
+
+<span class="cite">Isola et al. <em>"Image-to-Image Translation with Conditional Adversarial Nets"</em>. 2017</span>
+
+.
+
+<img src="img/pix2pixHD.gif" />
+
+<span class="cite">Wang et al. <em>"High-Resolution Image Synthesis and Semantic Manipulation with Conditional GANs"</em>. 2018</span>
+.
+
+### Domain Transfer: Star GAN
+
+<img src="img/stargan.png" />
+
+- Multiple discriminators, *one* generator
+
+<span class="cite">Choi et al. <em>"StarGAN: Unified Generative Adversarial Networks for Multi-Domain Image-to-Image Translation"</em>. 2017</span>
 
 .
 
@@ -228,13 +274,22 @@ In practice, a non-saturating adaptation is used.
 
 Large GAN for natural images.
 
-<!-- TODO add samples -->
+- Improved fidelity / variety
 
-- Original source of dogball <!-- .element: class="fragment" data-fragment-index="0" -->
-
-<!-- TODO add dogball -->
+<img height="380" src="img/biggan_samples_512.png" />
 
 <span class="cite">Brock et al. <em>"Large Scale GAN Training for High Fidelity Natural Image Synthesis"</em>. 2018</span>
+
+.
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/BigGAN?src=hash&amp;ref_src=twsrc%5Etfw">#BigGAN</a> is so much fun. I stumbled upon a (circular) direction in latent space that makes party parrots, as well as other party animals: <a href="https://t.co/zU1mCh9UBe">pic.twitter.com/zU1mCh9UBe</a></p>&mdash; Phillip Isola (@phillip_isola) <a href="https://twitter.com/phillip_isola/status/1066567846711476224?ref_src=twsrc%5Etfw">November 25, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+.
+
+Original source of dogball
+
+<img src="img/dogball.png" />
 
 .
 
@@ -256,9 +311,23 @@ Large GAN for natural images.
 - Progressively grow the generator and discriminator.
    - 4x4, 8x8, ..., **1024x1024**
 
-<!-- TODO insert GIF -->
+<span class="cite">Karras et al. <em>"Progressive Growing of GANs for Improved Quality, Stability, and Variation"</em>. 2018</span>
 
-<span  class="cite">Karras et al. <em>"Progressive Growing of GANs for Improved Quality, Stability, and Variation"</em>. 2018</span>
+.
+
+### Progressive GAN: CelebA interpolation
+
+<iframe src="https://drive.google.com/file/d/1gl6FSeTqqWqqg-JXjWBxA0f-MGaq9BlL/preview" width="640" height="480"></iframe>
+
+.
+
+### Unsupervised disentanglement: InfoGAN
+
+- Add categorical prior, approximate mutual information between categories.
+
+<img height="420" src="img/infogan.png" />
+
+<span class="cite">Chen et al. <em>"InfoGAN: Interpretable Representation Learning by Information Maximizing Generative Adversarial Nets"</em>. 2016</span>
 
 .
 
@@ -279,12 +348,23 @@ Large GAN for natural images.
 
 .
 
+### Realistic Talking Head Models
+
+<img src="img/fewshot_animated.gif" />
+
+<span class="cite">Zakharov et al. <em>"Few-Shot Adversarial Learning of Realistic Neural Talking Head Models"</em>. 2019</span>
+
+.
+
 ### Shortcomings
 
 Easy to shoot your foot with:
 
 - Hard to train ─ balancing discriminator and generator
 - Mode collapse
+- Class switching
+
+<img class="fragment" data-fragment-index="0" src="img/gan_tweet.png" />
 
 .
 
@@ -294,15 +374,17 @@ Easy to shoot your foot with:
    - Salimans et al. 2016
 - Wasserstein GAN (Arjovsky et al. 2017)
 - Gradient Penalization (Gulrajani et al. 2017)
-- Adding noise to inputs 
+- Instance noise (Sønderby et al. 2017) 
 - Spectral Normalization (Miyamoto et al. 2018)
 - Relativistic GAN loss (Jolicoeur-Martineau. 2018)
 
 .
 
-Relativistic GAN
+#### <a href="https://ajolicoeur.wordpress.com/relativisticgan/">Relativistic GAN</a>
 
-<img src="https://ajolicoeur.files.wordpress.com/2018/06/screenshot-from-2018-06-30-11-04-05.png?w=656" />
+<img height="520" src="https://ajolicoeur.files.wordpress.com/2018/06/screenshot-from-2018-06-30-11-04-05.png?w=656" />
+
+<span class="cite">Jolicoeur-Martineau. <em>"The relativistic discriminator: a key element missing from standard GAN"</em>. 2019</span>
 
 ---
 
@@ -313,35 +395,24 @@ Relativistic GAN
 - Medical imaging data sets, very few to no annotations.
    - Expertise is usually required
 
+- Automated labelling contributes to an enriched image database.
+
 .
 
-ImageCLEF Caption 2017 + 2018 + 2019
+ImageCLEF Caption 2017 / 2018 / 2019
 
-<img style="height: 6.5cm" src="img/imageclef2017-examples.png" />
+<img style="height: 6.2cm" src="img/imageclef2017-examples.png" />
 
 - Pubmed Central (PMC): images from biomedical literature.
 - Annotations: lists of CUI identifiers extracted from captions.
 
-<div class="container">
-<div class="column column-one">
-<h3>2017</h3>
-<ul>
-<li>Challenge's pilot year</li>
-<li>Training: 164,614 images</li>
-<li>Validation: 10,000 images</li>
-<li>Testing: 10,000 images</li>
-<ul>
-</div>
-<div class="column column-two">
-<h3>2018</h3>
+<h4>ImageCLEF Caption 2018</h4>
 <ul>
 <li>No subfigures, pre-filtering</li>
 <li>Training: 223,859 images</li>
 <li>Testing: 9,938 images</li>
 <li>Over 100 thousand unique concepts</li>
 <ul>
-</div>
-</div>
 
 .
 
@@ -372,61 +443,26 @@ ImageCLEF Caption 2017 + 2018 + 2019
 
 .
 
-#### Sparse Denoising autoencoder
-
-<div style="height: 10cm">
-<img src="img/sdae.svg" />
-</div>
-
-<ul style="font-size: 20pt">
-<li>autoencoder with sparsity-inducing regularization</li>
-<ul>
-<li>Vincent et al. 2010</li>
-</ul>
-<li>Added Gaussian noise $\tilde{x}$</li>
-<li>Features extracted from the bottleneck vector</li>
-</ul>
-
-.
-
-
-#### Bidirectional Generative Adversarial Network
-
-<div><img src="img/bigan.svg" /></div>
-
-<ul style="font-size: 20pt">
-<li>Generative adversarial network (GAN) with an encoder</li>
-<ul><li>Donahue et al. 2016</li></ul>
-</ul>
-<div style="font-size: 20pt">
-$$V(G, E, D) = \min_{G, E} \max_{D} \mathbb{E}_{\mathrm{x} \sim p_{\mathrm{x}}} [\log{D(\mathrm{x}, E(\mathrm{x}))}] + \mathbb{E}_{\mathrm{z} \sim p_\mathrm{z}} [\log{(1 - D(G(\mathrm{z}), \mathrm{z}))}]$$
-</div>
-<ul style="font-size: 20pt">
-<li>Features extracted with $E(x)$</li>
-</ul>
-
-.
-
-#### Adversarial autoencoder
+#### Adversarial Autoencoder
 
 <div><img src="img/2018aae.svg" /></div>
 
 <ul style="font-size: 20pt">
-<li>autoencoder with adversarial loss for regularization</li>
-<ul><li>Makhzani et al. 2015</li></ul>
-<li>$D$ forces $E$ to approximate a prior distribution $\mathcal{N}(0, I)$</li>
+<li>Autoencoder with adversarial loss for regularization</li>
+<li>$D$ forces $E$ to approximate a prior distribution</li>
 <li>Features extracted from the bottleneck vector</li>
 </ul>
 
+<span class="cite">Makhzani et al. <em>"Adversarial Autoencoders"</em>. 2015</span>
+
 .
 
-#### Flipped-Adversarial autoencoder
+#### Flipped-Adversarial Autoencoder
 
 <div><img src="img/faae_2lvl.svg" /></div>
 
 <ul style="font-size: 20pt">
 <li>A GAN with a latent regressor $E$</li>
-<ul><li>Zhang et al. 2018</li></ul>
 <li>2-level for stability</li>
 <li>Baseline, poor performance is expected</li>
 <li>Features extracted with $E(x)$</li>
@@ -434,12 +470,25 @@ $$V(G, E, D) = \min_{G, E} \max_{D} \mathbb{E}_{\mathrm{x} \sim p_{\mathrm{x}}} 
 
 .
 
+### Qualitative check
+
+
+<img src="img/aae_samples.svg" />
+
+.
+
+#### F-AAE Interpolation
+
+<img src="img/faae_interpolation.png" />
+
+
+.
+
 ### Multi-label Classification
 
 #### Logistic Regression
 
-- Attempt to classify the $n$ most frequent concepts.
-   - _750_ in ImageCLEF 2017, _500_ in ImageCLEF 2018
+- Attempt to classify the 500 most frequent concepts.
 - Loose threshold fine tuning to optimize F1 score.
 
 <img src="img/feature-learning-pipeline-logistic-regression.svg" />
@@ -479,39 +528,42 @@ Official participation
 #### Final Remarks
 
 - Unsupervised learning methods are very promising.
-- Representations can be applied in CBIR.
+   - Despite the tendency for end-to-end DNN classifiers
 
 <br/><br/>
 
-- Generative adversarial networks are still a hot topic. <!-- .element: class="fragment" data-fragment-index="0" -->
-- Many other feature learning methods. <!-- .element: class="fragment" data-fragment-index="0" -->
-- Explore non-visual information in representation learning. <!-- .element: class="fragment" data-fragment-index="0" -->
+- Generative adversarial networks are still a hot topic.
+- Many other feature learning methods.
+- Explore non-visual information in representation learning.
 
-Open-source: [github.com/bioinformatics-ua/imageclef-toolkit](https://github.com/bioinformatics-ua/imageclef-toolkit)
+Open-source <img style="vertical-align: bottom" height="32" src="img/github.png" /> [github.com/bioinformatics-ua/imageclef-toolkit](https://github.com/bioinformatics-ua/imageclef-toolkit)
 
 ---
 
 # Conclusion
 
-<img src="img/silhouette-kungfu.png" />
+### Deep Learning?
 
-Systems today are very likely to shift to these paradigms. <!-- .element: class="arrow-bullet fragment" data-fragment-index="0" -->
+<img class="fragment" data-fragment-index="0" width="240" src="img/exp.png" />
+&nbsp;
+<img class="fragment" data-fragment-index="1" width="180" src="img/silhouette-kungfu.png" />
 
-- Content-based queries → meaningful results <!-- .element: class="arrow-bullet fragment" data-fragment-index="0" -->
-- Enhanced computer systems → assist medical staff <!-- .element: class="arrow-bullet fragment" data-fragment-index="0" -->
+.
 
----
+<img src="img/xkcd-machine_learning.png" />
 
-### Thank you!
+<span class="fragment" data-fragment-index="0">→ Representation learning ←</span>
 
+.
+
+<h3 style="margin-top: 4cm">Thank you!</h3>
 
 <div style="font-size">
 </div>
-<div style="font-size: 12pt; text-align: right; margin: 1cm;">5th June 2019</div>
-<div class="foot" style="margin-left: 0pt; margin-right: 0pt; margin-bottom: 0pt; background-color: white;">
-   <a>GitHub: Enet4</a>
-   <a href="https://www.twitter.com/E_net4>Twitter: @E_net4</a>
-    <img class="foot" src="https://www.datascienceportugal.com/wp-content/uploads/2018/08/LogoDSPT_Grey-300x225.png"/>
+<div class="foot" style="font-size: 18pt; margin-top: 6cm; margin-left: 0pt; margin-right: 0pt; margin-bottom: 0pt;">
+   <a href="https://github.com/Enet4"><img style="vertical-align: bottom" height="46" src="img/github.png" /> Enet4</a>
+   <br>
+   <a href="https://www.twitter.com/E_net4"><img style="vertical-align: bottom" height="46" src="img/twitter.png" />@E_net4</a>
 </div>
 
-Note: This concludes my presentation.
+Note: This concludes my presentation. You are probably extremely hungry by now, so thank you for your patience. We can talk more about these subjects during tonight's dinner, or find me some other time on Twitter or GitHub.
