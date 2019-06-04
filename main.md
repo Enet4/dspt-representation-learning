@@ -574,13 +574,16 @@ Official participation
 - Unsupervised learning methods are very promising.
    - Despite the tendency for end-to-end DNN classifiers
 
-<br/><br/>
+<br/>
 
 - Generative adversarial networks are still a hot topic.
 - Many other feature learning methods.
 - Explore non-visual information in representation learning.
 
 Open-source <img style="vertical-align: bottom" height="32" src="img/github.png" /> [github.com/bioinformatics-ua/imageclef-toolkit](https://github.com/bioinformatics-ua/imageclef-toolkit)
+
+
+<span class="cite">Pinho and Costa. <em>"Feature Learning with Adversarial Networks for Concept Detection in Medical Images: UA.PT Bioinformatics at ImageCLEF 2018"</em>. 2018</span>
 
 ---
 
